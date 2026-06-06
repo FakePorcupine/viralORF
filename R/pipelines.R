@@ -543,7 +543,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
       p_blank <- ggplot2::ggplot() +
         theme_void() +
         ggplot2::ggtitle(paste(output_prefix, current_frame, "(No ORFs found)", sep = " - ")) +
-        ggplot2::theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
+        ggplot2::theme(plot.title = ggplot2::element_text(size = 10, face = "italic", hjust = 0.5))
 
       plot_list[[current_frame]] <- p_blank
       next
@@ -594,7 +594,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
       ggplot2::geom_point(size = 2.0, na.rm = TRUE) +
       ggplot2::theme_bw() +
       ggplot2::theme(panel.grid.major = ggplot2::element_blank(), panel.grid.minor = ggplot2::element_blank(),
-            plot.title = element_text(size = 10, face = "bold")) +
+            plot.title = ggplot2::element_text(size = 10, face = "bold")) +
       ggplot2::theme(axis.text.y = ggplot2::element_blank(), axis.ticks.y = ggplot2::element_blank()) +
       ggplot2::ggtitle(block_graph_title) +
 
@@ -658,8 +658,8 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     patchwork::plot_layout(guides = "collect") &
     ggplot2::theme(legend.position = "bottom",
           legend.box = "horizontal",
-          legend.title = element_text(size = 9, face = "bold"),
-          legend.text = element_text(size = 8))
+          legend.title = ggplot2::element_text(size = 9, face = "bold"),
+          legend.text = ggplot2::element_text(size = 8))
 
   # Calculate dimensions matching to A4 paper ratio (8.27 x 11.69 inches)
   panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
@@ -726,7 +726,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
       p_blank <- ggplot2::ggplot() +
         theme_void() +
         ggplot2::ggtitle(paste(output_prefix, current_frame, "(No stop codons found)", sep = " - ")) +
-        ggplot2::theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
+        ggplot2::theme(plot.title = ggplot2::element_text(size = 10, face = "italic", hjust = 0.5))
 
       plot_list[[current_frame]] <- p_blank
       next
@@ -745,7 +745,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
       ggplot2::geom_point(size = 1.5, na.rm = TRUE) +
       ggplot2::theme_bw() +
       ggplot2::theme(panel.grid.major = ggplot2::element_blank(), panel.grid.minor = ggplot2::element_blank(),
-            plot.title = element_text(size = 10, face = "bold")) +
+            plot.title = ggplot2::element_text(size = 10, face = "bold")) +
       ggplot2::theme(axis.text.y = ggplot2::element_blank(), axis.ticks.y = ggplot2::element_blank()) +
       ggplot2::ggtitle(block_graph_title) +
 
@@ -792,8 +792,8 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
   a4_composite_panel <- a4_composite_panel +
     patchwork::plot_layout(guides = "collect") &
     ggplot2::theme(legend.position = "bottom",
-          legend.title = element_text(size = 9, face = "bold"),
-          legend.text = element_text(size = 8))
+          legend.title = ggplot2::element_text(size = 9, face = "bold"),
+          legend.text = ggplot2::element_text(size = 8))
 
   # Export at the exact dimensions of an A4 sheet
   panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
