@@ -643,23 +643,21 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
   p5 <- plot_list[["revcom_plus_1"]]
   p6 <- plot_list[["revcom_plus_2"]]
 
-  # Clean up internal axes text for tidy paneling (keeps outer labels intact)
+# Clean up internal axes text for tidy paneling (keeps outer labels intact)
   p1 <- p1 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::ylab(NULL)
   p2 <- p2 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::ylab(NULL)
   p6 <- p6 + ggplot2::ylab(NULL)
 
-  # Design the 3x2 matrix math grid layout:
-  # Left column (top to bottom): plus_0, plus_1, plus_2
-  # Right column (top to bottom): revcom_plus_0, revcom_plus_1, revcom_plus_2
-  a4_composite_panel <- (p1 + p4) / (p2 + p5) / (p3 + p6)
+  # Use wrap_plots to design the 3x2 matrix grid cleanly
+  a4_composite_panel <- patchwork::wrap_plots(p1, p4, p2, p5, p3, p6, ncol = 2, nrow = 3)
 
   # Format consolidated multi-plot legend attributes
   a4_composite_panel <- a4_composite_panel +
     patchwork::plot_layout(guides = "collect") &
     ggplot2::theme(legend.position = "bottom",
-          legend.box = "horizontal",
-          legend.title = ggplot2::element_text(size = 9, face = "bold"),
-          legend.text = ggplot2::element_text(size = 8))
+                   legend.box = "horizontal",
+                   legend.title = ggplot2::element_text(size = 9, face = "bold"),
+                   legend.text = ggplot2::element_text(size = 8))
 
   # Calculate dimensions matching to A4 paper ratio (8.27 x 11.69 inches)
   panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
