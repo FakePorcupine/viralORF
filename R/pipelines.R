@@ -231,7 +231,7 @@ find_startstop_ORFs <- function(file_name) {
         paste(seqinr::translate(seq_chars, frame = 0), collapse = "")
       })
     ) %>%
-    pull(translated_aa, name = seq)
+    dplyr::pull(translated_aa, name = seq)
 
   translation_file_name <- paste(segment_name, "translated.fasta", sep = "-")
   seqinr::write.fasta(as.list(all_translated_sequences), names = names(all_translated_sequences), file.out = translation_file_name)
@@ -473,7 +473,7 @@ find_stopstop_ORFs <- function(file_name) {
         paste(seqinr::translate(seq_chars, frame = 0), collapse = "")
       })
     ) %>%
-    pull(translated_aa, name = seq)
+    dplyr::pull(translated_aa, name = seq)
 
   translation_file_name <- paste(segment_name, "translated.fasta", sep = "-")
   seqinr::write.fasta(as.list(all_translated_sequences), names = names(all_translated_sequences), file.out = translation_file_name)
