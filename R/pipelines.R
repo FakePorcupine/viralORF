@@ -557,7 +557,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
         values_to = "position"
       ) %>%
       dplyr::mutate(
-        category = case_when(
+        category = dplyr::case_when(
           position_type == "end" ~ "stop",
           is.na(kozak_strength) | kozak_strength == "" ~ "unknown",
           TRUE ~ kozak_strength
