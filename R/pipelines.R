@@ -226,7 +226,7 @@ find_startstop_ORFs <- function(file_name) {
   all_translated_sequences <- sequences_for_translation %>%
     dplyr::mutate(
       nuc_sequence_lower = tolower(nuc_sequence),
-      translated_aa = map_chr(nuc_sequence_lower, ~{
+      translated_aa = purrr::map_chr(nuc_sequence_lower, ~{
         seq_chars <- strsplit(.x, "")[[1]]
         paste(seqinr::translate(seq_chars, frame = 0), collapse = "")
       })
@@ -468,7 +468,7 @@ find_stopstop_ORFs <- function(file_name) {
   all_translated_sequences <- sequences_for_translation %>%
     dplyr::mutate(
       nuc_sequence_lower = tolower(nuc_sequence),
-      translated_aa = map_chr(nuc_sequence_lower, ~{
+      translated_aa = purrr::map_chr(nuc_sequence_lower, ~{
         seq_chars <- strsplit(.x, "")[[1]]
         paste(seqinr::translate(seq_chars, frame = 0), collapse = "")
       })
