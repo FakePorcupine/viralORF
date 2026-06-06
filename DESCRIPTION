@@ -13,12 +13,14 @@ LazyData: true
 Imports: 
     seqinr,
     ORFik,
-    tidyverse,
-    Biostrings,
-    tidyr,
-    dplyr,
-    purrr,
     magrittr,
-    patchwork
+    dplyr,
+    stringr,
+    tibble,
+    tidyr,
+    purrr,
+    ggplot2,
+    patchwork,
+    Biostrings
 BiocViews: Bioinformatics, Annotation, Sequencing
 RoxygenNote: 7.3.2
