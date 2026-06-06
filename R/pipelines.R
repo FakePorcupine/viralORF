@@ -590,8 +590,8 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     block_graph_title <- paste(output_prefix, current_frame, sep = " - ")
 
     block_graph <- ggplot2::ggplot(plot_data_with_dummy,
-                          aes(x = position, y = V1, col = category, shape = category)) +
-      geom_point(size = 2.0, na.rm = TRUE) +
+                          ggplot2::aes(x = position, y = V1, col = category, shape = category)) +
+      ggplot2::geom_point(size = 2.0, na.rm = TRUE) +
       theme_bw() +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
             plot.title = element_text(size = 10, face = "bold")) +
@@ -625,7 +625,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
     # Save the individual standalone image
     block_graph_name <- paste0(output_prefix, "_", current_frame, "_start-stop_ORF.png")
-    ggsave(filename = block_graph_name, plot = block_graph, width = 10, height = 6, dpi = 300)
+    ggplot2::ggsave(filename = block_graph_name, plot = block_graph, width = 10, height = 6, dpi = 300)
     message(paste("Saved individual plot: '", block_graph_name, "'", sep=""))
 
     # Store plot for composite mapping
@@ -663,7 +663,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
   # Calculate dimensions matching to A4 paper ratio (8.27 x 11.69 inches)
   panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
-  ggsave(filename = panel_file_name, plot = a4_composite_panel,
+  ggplot2::ggsave(filename = panel_file_name, plot = a4_composite_panel,
          width = 8.27, height = 11.69, dpi = 300)
 
   message(paste("Successfully exported panel sheet: '", panel_file_name, "'", sep=""))
@@ -741,8 +741,8 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
     # Build the clean dot map
     block_graph <- ggplot2::ggplot(block_graph_dataset,
-                          aes(x = position, y = V1, col = category, shape = category)) +
-      geom_point(size = 1.5, na.rm = TRUE) +
+                          ggplot2::aes(x = position, y = V1, col = category, shape = category)) +
+      ggplot2::geom_point(size = 1.5, na.rm = TRUE) +
       theme_bw() +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
             plot.title = element_text(size = 10, face = "bold")) +
@@ -763,7 +763,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
     # Save standalone plot
     block_graph_name <- paste0(output_prefix, "_", current_frame, "_stop-stop_ORF.png")
-    ggsave(filename = block_graph_name, plot = block_graph, width = 10, height = 6, dpi = 300)
+    ggplot2::ggsave(filename = block_graph_name, plot = block_graph, width = 10, height = 6, dpi = 300)
     message(paste("Saved individual plot: '", block_graph_name, "'", sep=""))
 
     # Store plot object
@@ -797,7 +797,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
   # Export at the exact dimensions of an A4 sheet
   panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
-  ggsave(filename = panel_file_name, plot = a4_composite_panel,
+  ggplot2::ggsave(filename = panel_file_name, plot = a4_composite_panel,
          width = 8.27, height = 11.69, dpi = 300)
 
   message(paste("Successfully exported panel sheet: '", panel_file_name, "'", sep=""))
