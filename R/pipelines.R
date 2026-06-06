@@ -98,7 +98,7 @@ find_startstop_ORFs <- function(file_name) {
         } else {
           toupper(sequence)
         },
-        ORFs = list(as.data.frame(ORFik::findORFs(processed_sequence, longestORF = FALSE, startDefinition(6))))
+        ORFs = list(as.data.frame(ORFik::findORFs(processed_sequence, longestORF = FALSE, "ATG")))
       ) %>%
       tidyr::unnest(ORFs) %>%
       dplyr::ungroup() %>%
