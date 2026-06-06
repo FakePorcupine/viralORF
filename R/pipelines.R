@@ -105,7 +105,7 @@ find_startstop_ORFs <- function(file_name) {
       tibble::as_tibble() %>%
       dplyr::rename(start = start, end = end, width = width) %>%
       dplyr::mutate(
-        ORF_ID = paste(seq_name, row_number(), sep = "-"),
+        ORF_ID = paste(seq_name, dplyr::row_number(), sep = "-"),
         length = width,
         nuc_sequence = stringr::str_sub(processed_sequence, start, end),
         kozak_dinuc = get_kozak_dinuc(processed_sequence, nuc_sequence, start)
@@ -355,7 +355,7 @@ find_stopstop_ORFs <- function(file_name) {
       dplyr::ungroup() %>%
       tibble::as_tibble() %>%
       dplyr::mutate(
-        ORF_ID = paste(seq_name, row_number(), sep = "-"),
+        ORF_ID = paste(seq_name, dplyr::row_number(), sep = "-"),
         length = width,
         nuc_sequence = stringr::str_sub(processed_sequence, start, end)
       ) %>%
