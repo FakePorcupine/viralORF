@@ -162,7 +162,7 @@ find_startstop_ORFs <- function(file_name) {
 
   positive_ORF_2 <- positive_ORF_1 %>%
     dplyr::mutate(start = as.character(start)) %>%
-    left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
+    dplyr::left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
 
   positive_ORF_3 <- positive_ORF_2 %>%
     group_by(seq) %>%
@@ -190,7 +190,7 @@ find_startstop_ORFs <- function(file_name) {
 
   negative_ORF_2 <- negative_ORF_1 %>%
     dplyr::mutate(start = as.character(start)) %>%
-    left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
+    dplyr::left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
 
   negative_ORF_3 <- negative_ORF_2 %>%
     group_by(seq) %>%
@@ -211,7 +211,7 @@ find_startstop_ORFs <- function(file_name) {
 
   # Adding Kozak strength calculations
   all_ORFs <- all_ORFs %>%
-    left_join(kozak_reference, by = c("kozak_dinuc" = "dinuc"))
+    dplyr::left_join(kozak_reference, by = c("kozak_dinuc" = "dinuc"))
 
   output_file_name <- paste0(segment_name, "_start-stop_ORFs.csv")
   write.csv(all_ORFs, file = output_file_name, row.names = FALSE)
@@ -408,7 +408,7 @@ find_stopstop_ORFs <- function(file_name) {
 
   positive_ORF_2 <- positive_ORF_1 %>%
     dplyr::mutate(start = as.character(start)) %>%
-    left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
+    dplyr::left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
 
   positive_ORF_3 <- positive_ORF_2 %>%
     group_by(seq) %>%
@@ -436,7 +436,7 @@ find_stopstop_ORFs <- function(file_name) {
 
   negative_ORF_2 <- negative_ORF_1 %>%
     dplyr::mutate(start = as.character(start)) %>%
-    left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
+    dplyr::left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
 
   negative_ORF_3 <- negative_ORF_2 %>%
     group_by(seq) %>%
