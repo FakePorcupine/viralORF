@@ -169,9 +169,9 @@ find_startstop_ORFs <- function(file_name) {
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
-      correct_frame_lookup = map(longest_orf_placeholder, ~frame_correction_table %>%
+      correct_frame_lookup = purrr::map(longest_orf_placeholder, ~frame_correction_table %>%
                                    dplyr::filter(condition == .x)),
-      frame = map2_chr(placeholder_frame, correct_frame_lookup,
+      frame = purrr::map2_chr(placeholder_frame, correct_frame_lookup,
                        ~dplyr::filter(.y, frame_to_change == .x)$correct_frame)
     ) %>%
     dplyr::ungroup() %>%
@@ -197,9 +197,9 @@ find_startstop_ORFs <- function(file_name) {
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
-      correct_frame_lookup = map(longest_orf_placeholder, ~frame_correction_table %>%
+      correct_frame_lookup = purrr::map(longest_orf_placeholder, ~frame_correction_table %>%
                                    dplyr::filter(condition == .x)),
-      frame = map2_chr(placeholder_frame, correct_frame_lookup,
+      frame = purrr::map2_chr(placeholder_frame, correct_frame_lookup,
                        ~dplyr::filter(.y, frame_to_change == .x)$correct_frame)
     ) %>%
     dplyr::ungroup() %>%
@@ -415,9 +415,9 @@ find_stopstop_ORFs <- function(file_name) {
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
-      correct_frame_lookup = map(longest_orf_placeholder, ~frame_correction_table %>%
+      correct_frame_lookup = purrr::map(longest_orf_placeholder, ~frame_correction_table %>%
                                    dplyr::filter(condition == .x)),
-      frame = map2_chr(placeholder_frame, correct_frame_lookup,
+      frame = purrr::map2_chr(placeholder_frame, correct_frame_lookup,
                        ~dplyr::filter(.y, frame_to_change == .x)$correct_frame)
     ) %>%
     dplyr::ungroup() %>%
@@ -443,9 +443,9 @@ find_stopstop_ORFs <- function(file_name) {
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
-      correct_frame_lookup = map(longest_orf_placeholder, ~frame_correction_table %>%
+      correct_frame_lookup = purrr::map(longest_orf_placeholder, ~frame_correction_table %>%
                                    dplyr::filter(condition == .x)),
-      frame = map2_chr(placeholder_frame, correct_frame_lookup,
+      frame = purrr::map2_chr(placeholder_frame, correct_frame_lookup,
                        ~dplyr::filter(.y, frame_to_change == .x)$correct_frame)
     ) %>%
     dplyr::ungroup() %>%
