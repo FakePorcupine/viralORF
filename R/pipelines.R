@@ -540,7 +540,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
     # If a frame has no data, create a blank placeholder plot to keep the layout grid aligned
     if (nrow(block_dataset_for_graph) == 0) {
-      p_blank <- ggplot() +
+      p_blank <- ggplot2::ggplot() +
         theme_void() +
         ggtitle(paste(output_prefix, current_frame, "(No ORFs found)", sep = " - ")) +
         theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
@@ -589,7 +589,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     plot_data_with_dummy <- dplyr::bind_rows(block_graph_dataset, dummy_data)
     block_graph_title <- paste(output_prefix, current_frame, sep = " - ")
 
-    block_graph <- ggplot(plot_data_with_dummy,
+    block_graph <- ggplot2::ggplot(plot_data_with_dummy,
                           aes(x = position, y = V1, col = category, shape = category)) +
       geom_point(size = 2.0, na.rm = TRUE) +
       theme_bw() +
@@ -723,7 +723,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
     # Handle frames with missing data to keep the 3x2 matrix layout structurally aligned
     if (nrow(block_dataset_for_graph) == 0) {
-      p_blank <- ggplot() +
+      p_blank <- ggplot2::ggplot() +
         theme_void() +
         ggtitle(paste(output_prefix, current_frame, "(No stop codons found)", sep = " - ")) +
         theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
@@ -740,7 +740,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     block_graph_title <- paste(output_prefix, current_frame, sep = " - ")
 
     # Build the clean dot map
-    block_graph <- ggplot(block_graph_dataset,
+    block_graph <- ggplot2::ggplot(block_graph_dataset,
                           aes(x = position, y = V1, col = category, shape = category)) +
       geom_point(size = 1.5, na.rm = TRUE) +
       theme_bw() +
