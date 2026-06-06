@@ -542,8 +542,8 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     if (nrow(block_dataset_for_graph) == 0) {
       p_blank <- ggplot2::ggplot() +
         theme_void() +
-        ggtitle(paste(output_prefix, current_frame, "(No ORFs found)", sep = " - ")) +
-        theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
+        ggplot2::ggtitle(paste(output_prefix, current_frame, "(No ORFs found)", sep = " - ")) +
+        ggplot2::theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
 
       plot_list[[current_frame]] <- p_blank
       next
@@ -592,13 +592,13 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     block_graph <- ggplot2::ggplot(plot_data_with_dummy,
                           ggplot2::aes(x = position, y = V1, col = category, shape = category)) +
       ggplot2::geom_point(size = 2.0, na.rm = TRUE) +
-      theme_bw() +
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+      ggplot2::theme_bw() +
+      ggplot2::theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
             plot.title = element_text(size = 10, face = "bold")) +
-      theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-      ggtitle(block_graph_title) +
+      ggplot2::theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+      ggplot2::ggtitle(block_graph_title) +
 
-      scale_color_manual(
+      ggplot2::scale_color_manual(
         name = "Kozak strength/stop codon",
         values = c(
           "strong Kozak" = "chartreuse3",
@@ -609,7 +609,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
         ),
         drop = FALSE
       ) +
-      scale_shape_manual(
+      ggplot2::scale_shape_manual(
         name = "Kozak strength/stop codon",
         values = c(
           "strong Kozak" = 16,
@@ -620,8 +620,8 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
         ),
         drop = FALSE
       ) +
-      coord_cartesian(xlim = c(0, plot_x_limit)) +
-      ylab("Unique Sequences") + xlab("nucleotide position")
+      ggplot2::coord_cartesian(xlim = c(0, plot_x_limit)) +
+      ggplot2::ylab("Unique Sequences") + ggplot2::xlab("nucleotide position")
 
     # Save the individual standalone image
     block_graph_name <- paste0(output_prefix, "_", current_frame, "_start-stop_ORF.png")
@@ -644,9 +644,9 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
   p6 <- plot_list[["revcom_plus_2"]]
 
   # Clean up internal axes text for tidy paneling (keeps outer labels intact)
-  p1 <- p1 + xlab(NULL); p4 <- p4 + xlab(NULL); p4 <- p4 + ylab(NULL)
-  p2 <- p2 + xlab(NULL); p5 <- p5 + xlab(NULL); p5 <- p5 + ylab(NULL)
-  p6 <- p6 + ylab(NULL)
+  p1 <- p1 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::ylab(NULL)
+  p2 <- p2 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::ylab(NULL)
+  p6 <- p6 + ggplot2::ylab(NULL)
 
   # Design the 3x2 matrix math grid layout:
   # Left column (top to bottom): plus_0, plus_1, plus_2
@@ -655,8 +655,8 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
 
   # Format consolidated multi-plot legend attributes
   a4_composite_panel <- a4_composite_panel +
-    plot_layout(guides = "collect") &
-    theme(legend.position = "bottom",
+    patchwork::plot_layout(guides = "collect") &
+    ggplot2::theme(legend.position = "bottom",
           legend.box = "horizontal",
           legend.title = element_text(size = 9, face = "bold"),
           legend.text = element_text(size = 8))
@@ -725,8 +725,8 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     if (nrow(block_dataset_for_graph) == 0) {
       p_blank <- ggplot2::ggplot() +
         theme_void() +
-        ggtitle(paste(output_prefix, current_frame, "(No stop codons found)", sep = " - ")) +
-        theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
+        ggplot2::ggtitle(paste(output_prefix, current_frame, "(No stop codons found)", sep = " - ")) +
+        ggplot2::theme(plot.title = element_text(size = 10, face = "italic", hjust = 0.5))
 
       plot_list[[current_frame]] <- p_blank
       next
@@ -743,23 +743,23 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
     block_graph <- ggplot2::ggplot(block_graph_dataset,
                           ggplot2::aes(x = position, y = V1, col = category, shape = category)) +
       ggplot2::geom_point(size = 1.5, na.rm = TRUE) +
-      theme_bw() +
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+      ggplot2::theme_bw() +
+      ggplot2::theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
             plot.title = element_text(size = 10, face = "bold")) +
-      theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-      ggtitle(block_graph_title) +
+      ggplot2::theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+      ggplot2::ggtitle(block_graph_title) +
 
       # Enforce a single black dot classification style matching formatting rules
-      scale_color_manual(
+      ggplot2::scale_color_manual(
         name = "Classification",
         values = c("stop codon" = "black")
       ) +
-      scale_shape_manual(
+      ggplot2::scale_shape_manual(
         name = "Classification",
         values = c("stop codon" = 16)
       ) +
-      coord_cartesian(xlim = c(0, plot_x_limit)) +
-      ylab("Unique Sequences") + xlab("nucleotide position")
+      ggplot2::coord_cartesian(xlim = c(0, plot_x_limit)) +
+      ggplot2::ylab("Unique Sequences") + ggplot2::xlab("nucleotide position")
 
     # Save standalone plot
     block_graph_name <- paste0(output_prefix, "_", current_frame, "_stop-stop_ORF.png")
@@ -781,17 +781,17 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
   p6 <- plot_list[["revcom_plus_2"]]
 
   # Eliminate repetitive interior labels
-  p1 <- p1 + xlab(NULL); p4 <- p4 + xlab(NULL); p4 <- p4 + ylab(NULL)
-  p2 <- p2 + xlab(NULL); p5 <- p5 + xlab(NULL); p5 <- p5 + ylab(NULL)
-  p6 <- p6 + ylab(NULL)
+  p1 <- p1 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::xlab(NULL); p4 <- p4 + ggplot2::ylab(NULL)
+  p2 <- p2 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::xlab(NULL); p5 <- p5 + ggplot2::ylab(NULL)
+  p6 <- p6 + ggplot2::ylab(NULL)
 
   # Construct the 3x2 grid
   a4_composite_panel <- (p1 + p4) / (p2 + p5) / (p3 + p6)
 
   # Consolidate labels and place a single legend along the bottom-right frame margins
   a4_composite_panel <- a4_composite_panel +
-    plot_layout(guides = "collect") &
-    theme(legend.position = "bottom",
+    patchwork::plot_layout(guides = "collect") &
+    ggplot2::theme(legend.position = "bottom",
           legend.title = element_text(size = 9, face = "bold"),
           legend.text = element_text(size = 8))
 
