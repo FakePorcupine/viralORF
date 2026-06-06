@@ -165,7 +165,7 @@ find_startstop_ORFs <- function(file_name) {
     dplyr::left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
 
   positive_ORF_3 <- positive_ORF_2 %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
@@ -193,7 +193,7 @@ find_startstop_ORFs <- function(file_name) {
     dplyr::left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
 
   negative_ORF_3 <- negative_ORF_2 %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
@@ -219,7 +219,7 @@ find_startstop_ORFs <- function(file_name) {
   # Translating longest ORFs and exporting as FASTA file
   sequences_for_translation <- all_ORFs %>%
     dplyr::filter(frame == "plus_0") %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::slice_max(order_by = length, n = 1, with_ties = FALSE) %>%
     dplyr::ungroup()
 
@@ -411,7 +411,7 @@ find_stopstop_ORFs <- function(file_name) {
     dplyr::left_join(placeholder_frame_table, by = c("start" = "nuc_position"))
 
   positive_ORF_3 <- positive_ORF_2 %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
@@ -439,7 +439,7 @@ find_stopstop_ORFs <- function(file_name) {
     dplyr::left_join(placeholder_frame_table_neg, by = c("start" = "nuc_position"))
 
   negative_ORF_3 <- negative_ORF_2 %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::mutate(
       length = as.numeric(length),
       longest_orf_placeholder = placeholder_frame[which.max(length)],
@@ -461,7 +461,7 @@ find_stopstop_ORFs <- function(file_name) {
   # Translating longest ORFs and exporting as FASTA file
   sequences_for_translation <- all_ORFs %>%
     dplyr::filter(frame == "plus_0") %>%
-    group_by(seq) %>%
+    dplyr::group_by(seq) %>%
     dplyr::slice_max(order_by = length, n = 1, with_ties = FALSE) %>%
     dplyr::ungroup()
 
