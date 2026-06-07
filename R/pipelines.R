@@ -385,7 +385,7 @@ find_stopstop_ORFs <- function(file_name) {
   has_ambiguous_lgl_vec <- sapply(all_seqs_raw_list, has_ambiguous_bases)
   ambiguous_names <- names(all_seqs_raw_list[has_ambiguous_lgl_vec])
 
-  writeLines(ambiguous_names, "excluded_sequences.txt")
+  writeLines(ambiguous_names, paste0(segment_name, "_excluded_sequences.txt"))
 
   if(length(ambiguous_names) > 0) {
     warning(paste("Filtered out", length(ambiguous_names), "sequences due to ambiguous bases. Names written to 'excluded_sequences.txt'"))
@@ -675,7 +675,7 @@ graph_startstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
                    legend.text = ggplot2::element_text(size = 8))
 
   # Calculate dimensions matching to A4 paper ratio (8.27 x 11.69 inches)
-  panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
+  panel_file_name <- paste0(output_prefix, "_startstop_A4_composite_panel.png")
   ggplot2::ggsave(filename = panel_file_name, plot = a4_composite_panel,
          width = 8.27, height = 11.69, dpi = 300)
 
@@ -810,7 +810,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
           legend.text = ggplot2::element_text(size = 8))
 
   # Export at the exact dimensions of an A4 sheet
-  panel_file_name <- paste0(output_prefix, "_A4_composite_panel.png")
+  panel_file_name <- paste0(output_prefix, "_stopstop_A4_composite_panel.png")
   ggplot2::ggsave(filename = panel_file_name, plot = a4_composite_panel,
          width = 8.27, height = 11.69, dpi = 300)
 
