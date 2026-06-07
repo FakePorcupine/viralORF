@@ -800,7 +800,7 @@ graph_stopstop_ORFs <- function(orf_data, output_prefix = "ORF_plot") {
   p6 <- p6 + ggplot2::ylab(NULL)
 
   # Construct the 3x2 grid
-  a4_composite_panel <- (p1 + p4) / (p2 + p5) / (p3 + p6)
+  a4_composite_panel <- patchwork::wrap_plots(p1, p4, p2, p5, p3, p6, ncol = 2, nrow = 3)
 
   # Consolidate labels and place a single legend along the bottom-right frame margins
   a4_composite_panel <- a4_composite_panel +
