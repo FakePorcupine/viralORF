@@ -13,7 +13,7 @@ devtools::install_github("FakePorcupine/viralORF") # installs package
 
 # Core functions
 
-**ORF definitions**
+**ORF definitions** (Figure created with BioRender.com)
 ![ORF definitions](https://github.com/FakePorcupine/stop-stop-ORF-finder/blob/ec33dc054724a8f364b14fad8124fb438452532a/ORF%20definitions.png)
 
 **1. `find_startstop_ORFs(file_name)`** 
